@@ -1,0 +1,40 @@
+<api:script xmlns:api="http://apiscript.com/ns?v1" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <api:info title="Customers" other:schema="CSV" description=""  other:version="20">
+    <attr   name="customerID"     xs:type="string" columnsize="5" readonly="false"   key="true"       />
+    <attr   name="companyName"    xs:type="string"   readonly="false"   required="false" />
+    <attr   name="contactName"    xs:type="string"   readonly="false"   required="false" />
+    <attr   name="contactTitle"   xs:type="string"   readonly="false"   required="false" />
+    <attr   name="address"        xs:type="string"   readonly="false"   required="false" />
+    <attr   name="city"           xs:type="string"   readonly="false"   required="false" />
+    <attr   name="region"         xs:type="string"   readonly="false"   required="false" />
+    <attr   name="postalCode"     xs:type="string"   readonly="false"   required="false" />
+    <attr   name="country"        xs:type="string"   readonly="false"   required="false" />
+    <attr   name="phone"          xs:type="string"   readonly="false"   required="false" />
+    <attr   name="fax"            xs:type="string"   readonly="false"   required="false" />
+  </api:info>
+
+  <api:script method="GET">
+	<api:set  attr="uri"  value="http://localhost:8081/cdata/csv/customers.csv?q=[_query.query]" />
+    <api:call op="csvproviderGet">
+      <api:push/>
+    </api:call>
+  </api:script>
+
+  <api:script method="POST">
+    <api:call op="csvproviderAdd">
+      <api:push/>
+    </api:call>
+  </api:script>
+
+  <api:script method="MERGE">
+    <api:call op="csvproviderMerge">
+      <api:push/>
+    </api:call>
+  </api:script>
+
+  <api:script method="DELETE">
+    <api:call op="csvproviderDelete">
+      <api:push/>
+    </api:call>
+  </api:script>
+</api:script>

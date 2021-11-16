@@ -1,0 +1,47 @@
+<api:script xmlns:api="http://apiscript.com/ns?v1" xmlns:xs="http://www.cdata.com/ns/rsbscript/2" xmlns:other="http://apiscript.com/ns?v1">
+  <api:info title="employees" other:schema="CSV" description="" other:version="20">
+    <attr   name="employeeID"      xs:type="int"    columnsize="4"    precision="10" readonly="false" description="null" other:internalname="employeeID"      key="true"       />
+    <attr   name="lastName"        xs:type="string" columnsize="2000"                readonly="false" description="null" other:internalname="lastName"        required="false" />
+    <attr   name="firstName"       xs:type="string" columnsize="2000"                readonly="false" description="null" other:internalname="firstName"       required="false" />
+    <attr   name="title"           xs:type="string" columnsize="2000"                readonly="false" description="null" other:internalname="title"           required="false" />
+    <attr   name="titleOfCourtesy" xs:type="string" columnsize="2000"                readonly="false" description="null" other:internalname="titleOfCourtesy" required="false" />
+    <attr   name="birthDate"       xs:type="date"   columnsize="3"                   readonly="false" description="null" other:internalname="birthDate"       required="false" />
+    <attr   name="hireDate"        xs:type="date"   columnsize="3"                   readonly="false" description="null" other:internalname="hireDate"        required="false" />
+    <attr   name="address"         xs:type="string" columnsize="2000"                readonly="false" description="null" other:internalname="address"         required="false" />
+    <attr   name="city"            xs:type="string" columnsize="2000"                readonly="false" description="null" other:internalname="city"            required="false" />
+    <attr   name="region"          xs:type="string" columnsize="2000"                readonly="false" description="null" other:internalname="region"          required="false" />
+    <attr   name="postalCode"      xs:type="string" columnsize="2000"                readonly="false" description="null" other:internalname="postalCode"      required="false" />
+    <attr   name="country"         xs:type="string" columnsize="2000"                readonly="false" description="null" other:internalname="country"         required="false" />
+    <attr   name="homePhone"       xs:type="string" columnsize="2000"                readonly="false" description="null" other:internalname="homePhone"       required="false" />
+    <attr   name="extension"       xs:type="int"    columnsize="4"    precision="10" readonly="false" description="null" other:internalname="extension"       required="false" />
+    <attr   name="photo"           xs:type="string" columnsize="2000"                readonly="false" description="null" other:internalname="photo"           required="false" />
+    <attr   name="notes"           xs:type="string" columnsize="2000"                readonly="false" description="null" other:internalname="notes"           required="false" />
+    <attr   name="reportsTo"       xs:type="int"    columnsize="4"    precision="10" readonly="false" description="null" other:internalname="reportsTo"       required="false" />
+    <attr   name="photoPath"       xs:type="string" columnsize="2000"                readonly="false" description="null" other:internalname="photoPath"       required="false" />
+  </api:info>
+
+  <api:script method="GET">
+	<api:set  attr="uri"  value="http://localhost:8081/cdata/csv/employees.csv?q=[_query.query]" />
+    <api:call op="csvproviderGet">
+      <api:push/>
+    </api:call>
+  </api:script>
+
+  <api:script method="POST">
+    <api:call op="csvproviderAdd">
+      <api:push/>
+    </api:call>
+  </api:script>
+
+  <api:script method="MERGE">
+    <api:call op="csvproviderMerge">
+      <api:push/>
+    </api:call>
+  </api:script>
+
+  <api:script method="DELETE">
+    <api:call op="csvproviderDelete">
+      <api:push/>
+    </api:call>
+  </api:script>
+</api:script>

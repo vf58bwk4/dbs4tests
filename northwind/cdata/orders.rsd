@@ -1,0 +1,43 @@
+<api:script xmlns:api="http://apiscript.com/ns?v1" xmlns:xs="http://www.cdata.com/ns/rsbscript/2" xmlns:other="http://apiscript.com/ns?v1">
+  <api:info title="orders" other:schema="CSV" description="" other:version="20">
+    <attr   name="orderID"        xs:type="int"    columnsize="4"    precision="10" readonly="false" description="null" other:internalname="orderID"        key="true"       />
+    <attr   name="customerID"     xs:type="string" columnsize="5"                   readonly="false" description="null" other:internalname="customerID"     required="false" />
+    <attr   name="employeeID"     xs:type="int"    columnsize="4"    precision="10" readonly="false" description="null" other:internalname="employeeID"     required="false" />
+    <attr   name="orderDate"      xs:type="date"   columnsize="3"                   readonly="false" description="null" other:internalname="orderDate"      required="false" />
+    <attr   name="requiredDate"   xs:type="date"   columnsize="3"                   readonly="false" description="null" other:internalname="requiredDate"   required="false" />
+    <attr   name="shippedDate"    xs:type="date"   columnsize="3"                   readonly="false" description="null" other:internalname="shippedDate"    required="false" />
+    <attr   name="shipVia"        xs:type="int"    columnsize="4"    precision="10" readonly="false" description="null" other:internalname="shipVia"        required="false" />
+    <attr   name="freight"        xs:type="double" columnsize="8"    precision="28" readonly="false" description="null" other:internalname="freight"        required="false" />
+    <attr   name="shipName"       xs:type="string" columnsize="2000"                readonly="false" description="null" other:internalname="shipName"       required="false" />
+    <attr   name="shipAddress"    xs:type="string" columnsize="2000"                readonly="false" description="null" other:internalname="shipAddress"    required="false" />
+    <attr   name="shipCity"       xs:type="string" columnsize="2000"                readonly="false" description="null" other:internalname="shipCity"       required="false" />
+    <attr   name="shipRegion"     xs:type="string" columnsize="2000"                readonly="false" description="null" other:internalname="shipRegion"     required="false" />
+    <attr   name="shipPostalCode" xs:type="string" columnsize="2000"                readonly="false" description="null" other:internalname="shipPostalCode" required="false" />
+    <attr   name="shipCountry"    xs:type="string" columnsize="2000"                readonly="false" description="null" other:internalname="shipCountry"    required="false" />
+  </api:info>
+
+  <api:script method="GET">
+	<api:set  attr="uri"  value="http://localhost:8081/cdata/csv/orders.csv?q=[_query.query]" />
+    <api:call op="csvproviderGet">
+      <api:push/>
+    </api:call>
+  </api:script>
+
+  <api:script method="POST">
+    <api:call op="csvproviderAdd">
+      <api:push/>
+    </api:call>
+  </api:script>
+
+  <api:script method="MERGE">
+    <api:call op="csvproviderMerge">
+      <api:push/>
+    </api:call>
+  </api:script>
+
+  <api:script method="DELETE">
+    <api:call op="csvproviderDelete">
+      <api:push/>
+    </api:call>
+  </api:script>
+</api:script>

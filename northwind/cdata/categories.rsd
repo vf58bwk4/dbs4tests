@@ -1,0 +1,34 @@
+<api:script xmlns:api="http://apiscript.com/ns?v1" xmlns:xs="http://www.cdata.com/ns/rsbscript/2" xmlns:other="http://apiscript.com/ns?v1">
+  <api:info title="categories" other:schema="CSV" description=""  other:version="20">
+    <attr   name="categoryID"     xs:type="int"      readonly="false" key="true"       />
+    <attr   name="categoryName"   xs:type="string" columnsize="2000" readonly="false" required="false" />
+    <attr   name="description"    xs:type="string" columnsize="2000" readonly="false" required="false" />
+    <attr   name="picture"        xs:type="string" columnsize="2000" readonly="false" required="false" />
+  </api:info>
+
+  <api:script method="GET">
+	<api:set  attr="uri"  value="http://localhost:8081/cdata/csv/categories.csv?q=[_query.query]" />
+    <api:call op="csvproviderGet">
+      <api:push/>
+    </api:call>
+  </api:script>
+
+  <api:script method="POST">
+    <api:call op="csvproviderAdd">
+      <api:push/>
+    </api:call>
+  </api:script>
+
+  <api:script method="MERGE">
+    <api:call op="csvproviderMerge">
+      <api:push/>
+    </api:call>
+  </api:script>
+
+  <api:script method="DELETE">
+	<api:set  attr="uri"  value="http://localhost:8081/cdata/csv/remove" />
+    <api:call op="csvproviderDelete">
+      <api:push/>
+    </api:call>
+  </api:script>
+</api:script>
